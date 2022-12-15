@@ -59,3 +59,8 @@ const shin = playerMaker("shin");
 shin.age = 13;
 shin.name = "이름을 바꿔보자"; //error
 ```
+
+-any
+any는 가급적 사용하지 않는다.
+Typescript로부터 벗어나기 때문이다.
+하지만 아주 가끔 any를 사용해서 타입스크립트로부터 벗어나야할때 간헐적으로 사용해주자.
