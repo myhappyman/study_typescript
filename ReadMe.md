@@ -64,3 +64,55 @@ shin.name = "이름을 바꿔보자"; //error
 any는 가급적 사용하지 않는다.
 Typescript로부터 벗어나기 때문이다.
 하지만 아주 가끔 any를 사용해서 타입스크립트로부터 벗어나야할때 간헐적으로 사용해주자.
+
+3. Javascript에 존재하지 않았던 타입들
+
+- unknown
+  api로부터 데이터를 받는데 데이터의 타입을 모른다면? 이럴때 unknown을 처리해주면 된다.
+
+```Typscript
+let a: unknown;
+if(typeof a === "number"){ //unknown타입은 먼저 체크를 해줘야한다.
+    let b = a + 1; // 위 조건문에서 typeof로 number인지 체크했기 때문에 a는 number자료형이 된다.
+}else if(typeof b === "string"){
+    let b = a + "안녕"; // string으로 인지되었기때문에 가능
+}
+```
+
+- void
+  함수에서 아무것도 리턴하지 않을때 void를 붙여준다.
+  아무것도 안붙여주고 return하지 않으면 기본값은 void이다.
+
+```Typescript
+function abc(){ // abc():void 로 ':void'가 숨어있다.
+    console.log("hello");
+}
+const a = abc();
+// a.toLowerCase(); //Error
+```
+
+- never
+  never는 return시키고 싶지 않을때, 사용한다.
+  다만 Exception이 발생했을때, 예외처리에 대한것은 가능하다.
+
+```Typescript
+function hello():never{
+    throw new Error("xxx");
+    //return "123"; //Error
+}
+```
+
+또는 파라미터 등에 2가지 이상의 타입을 정의하고 정의한 타입으로 들어오지 않는다면 else문을 타면서 never가 된다.
+2번쨰 예시를보자.
+
+```Typescript
+function test(name: string|number){
+    if(typeof name === "string"){
+        name; //string
+    }else if(typeof name === "number"){
+        name; //number
+    }else{ // 여길 타면 안된다... 고로 never
+        name; //name은 never타입이다. 정상적이지 않은 데이터라는 뜻
+    }
+}
+```
