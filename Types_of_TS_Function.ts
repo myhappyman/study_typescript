@@ -77,7 +77,7 @@ superPrint([1, 2, true, false]); // 4번째
 
 //Generic 처리 하나만으로 위에서 각각 필요하던 형태에 따라 type을 정의하던걸 해결했다.
 type SuperPrint = {
-  <TypePlaceholder>(arr: TypePlaceholder[]): TypePlaceholder;
+  <T>(arr: T[]): T;
 };
 
 const superPrint: SuperPrint = (arr) => arr[0];
