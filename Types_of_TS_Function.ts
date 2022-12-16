@@ -35,3 +35,65 @@ const add: Add = (a, b, c?: number) => {
 
 //다만 해당방식처럼 파라미터의 숫자가 다른 경우에는 optional처리를 해주고
 //조건문에 따라 결과값을 다르게 만들어 줄 수도 있다.
+
+/**
+ * - 다형성
+ * 다형성이란 여러가지 타입을 받아들이고 그것을 활용하여 사용하는것을 의미한다.
+ */
+
+/**
+ * - concrete type
+ * 컨크리트 타입에는 기존에 우리가 정의되어 있어 사용하던 타입들을 의미한다
+ * > number, string, boolean, unknown, void등 기본적으로 정의된 타입
+ */
+
+/**
+ * - generic
+ * generic이란 placeholder와 비슷한것을 말한다.
+ * concrete type대신에 사용할 수 있다.
+ * 다양한 타입을 제공해야할때, 그것에 따라 매번 타입을 추가하고 제거하고 불편함을 감소시켜줄 수 있다.
+ * 제네릭을 쓰려면 먼저 제네릭을 쓴다고 선언을 해줘야 한다.
+ * 다만, 모든 타입을 사용할 수 있게 해주고 그에 따라 형변환이 되다보니 any와 무슨 차이가
+ * 있을까 라는 생각이 들게 되는데,
+ */
+
+/*
+type SuperPrint = {
+    (arr: number[]): void
+    (arr: boolean[]): void
+    (arr: string[]): void
+    (arr: (number|boolean)[]): void
+}
+
+const superPrint: SuperPrint = (arr) => {
+    arr.forEach(i => console.log(i))
+}
+
+superPrint([1,2,3,4,5]); // 1번째
+superPrint([true, false, true]); // 2번째
+superPrint(["a", "B", "c"]); // 3번째
+superPrint([1, 2, true, false]); // 4번째
+*/
+
+//Generic 처리 하나만으로 위에서 각각 필요하던 형태에 따라 type을 정의하던걸 해결했다.
+type SuperPrint = {
+  <TypePlaceholder>(arr: TypePlaceholder[]): TypePlaceholder;
+};
+
+const superPrint: SuperPrint = (arr) => arr[0];
+
+superPrint([1, 2, 3, 4, 5]); // 1번째
+superPrint([true, false, true]); // 2번째
+superPrint(["a", "B", "c"]); // 3번째
+superPrint([1, 2, true, false]); // 4번째
+
+/**
+ * 위 제네릭 처리의 arr과 return이 마음대로 사용할 수 있는게 사실 any와 진짜 무슨차이인가
+ * 싶은 느낌이 들어서 아래처러 any로 선언하고 마우스 오버를 해보니 바로 차이점을 알 수 있었다.
+ * any는 그저 어떤 형태의 함수를 생성하고 작성해보아도 모든 타입이 any return도 any였지만,
+ * 제네릭 처리는 올려보니 각각 입력한 파라미터값에 따라 number, string,  number|string, 등등의
+ * 조합으로 나오고 해당하는 return값도 자료형 정보를 잃지하고 유지해준다.
+ */
+// type SuperPrint = {
+//   (arr: any[]): any;
+// };
