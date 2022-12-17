@@ -97,3 +97,19 @@ superPrint([1, 2, true, false]); // 4번째
 // type SuperPrint = {
 //   (arr: any[]): any;
 // };
+
+// Generic의 타입을 늘리고 싶으면 원하는 제네릭값을 마음대로 늘리면 된다.
+type SuperPrint2 = {
+  <T, V>(arr: T[], param?: V): T | V;
+};
+
+const superPrint2: SuperPrint2 = (arr, param) => {
+  if (param) {
+    return param;
+  } else {
+    return arr[0];
+  }
+};
+
+const test = superPrint2([1, 2, 3, 4], "test");
+const test2 = superPrint2(["hi", "hello"]);
