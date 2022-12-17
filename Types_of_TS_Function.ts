@@ -111,5 +111,5 @@ const superPrint2: SuperPrint2 = (arr, param) => {
   }
 };
 
-const test = superPrint2([1, 2, 3, 4], "test");
+const tests = superPrint2([1, 2, 3, 4], "test");
 const test2 = superPrint2(["hi", "hello"]);

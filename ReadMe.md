@@ -190,3 +190,15 @@ const add: Add = (a, b, c?: number) => {
 
 해당 내용은 블로그에 좀 더 정리를 해보았다.
 url : https://myhappyman.tistory.com/282
+
+# 7. classes
+
+url: https://myhappyman.tistory.com/283
+해당 내용도 아래 블로그에 정리를 해보았습니다.
+
+# 8. type, interface의 차이점
+
+url: https://myhappyman.tistory.com/284
+
+| or
+& and를 의미한다.

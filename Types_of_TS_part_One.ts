@@ -6,19 +6,19 @@
 //   };
 // }
 
-type IPlayer = {
+type IPlayers = {
   readonly name: string;
   age?: number;
 };
 
-function myInfo(name: string): IPlayer {
+function myInfo(name: string): IPlayers {
   return {
     name,
   };
 }
 
-const shin = myInfo("shin");
-shin.age = 13;
+const shins = myInfo("shin");
+shins.age = 13;
 // shin.name = "shin2"  //error readonly
 
 // 배열에도 타입을 정해주고 readonly를 걸어주면 push, pop과 같은 배열에 영향을 주는 메소드는 사용 불가능해진다.
