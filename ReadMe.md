@@ -202,3 +202,11 @@ url: https://myhappyman.tistory.com/284
 
 | or
 & and를 의미한다.
+
+# 9. interface 추가 학습
+
+인터페이스는 object의 형태를 정의하기 위해 존재한다고 정리하였는데, 그뿐 아니라 class의 모양을 정의하기 위해서도 사용이 된다.
+
+물론 construct는 존재하지 않기때문에, 사용되는 클래스 내부 변수들과 필수적으로 작성될 함수들을 정의할 수 있고 abstract이 해야할일을 대신 할수 있다.
+
+정의된 interface를 상속받을때는 extends가 아닌 implements키워드를 사용하며, abstract과의 차이점으로는 inteface는 javascript에는 없기 때문에, 빌드 후의 소스가 좀 더 가벼워지는 효과를 얻을 수 있어서 implements를 받는 자체의 interface를 자바스크립트에선 추적할수 없게된다.
