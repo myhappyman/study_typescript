@@ -83,3 +83,46 @@
 
 d.ts파일 작성법
 해당 파일은 js파일의 정의를 적어주는 call signature파일이므로 구현부를 작성하는게 아니라 정의부만 작성하여, typescript가 알아먹을 수 있도록 만든다.
+
+7. allowJs
+   boolean의 값을 가진다.
+   타입스크립트에서 js파일을 허용한다는 뜻이다.
+   import시 js파일에서도 함수들을 가져와서 불러올수 있게 해줍니다.
+
+이런 행위는 아직 js로만 존재하는 모듈이고 typescript로 정의된 라이브러리가 아닌데, 사용하고 싶다면 유용하게 사용할수 있는 옵션이다.
+자동으로 js의 함수들을 typescript가 추론해서 보호해주게 된다.
+
+8. // @ts-check && JSDocs
+   -@ts-check
+   js파일도 타입스크립트로 부터 보호를 받고 싶을 수 있다. 이럴 땐, 최 상단에 주석으로 `// @ts-check` 라고 적어주게 되면 js파일들의 타입스크립트화를 할 수 있습니다.
+   이것을 적어주면 타입스크립트에게 자바스크립트 파일을 확인하라고 알려주게 됩니다.
+
+   -JSDocs
+   타입스크립트가 제공하는 보호장치를 받고 싶을때 사용하는 옵션입니다.
+   JSDocs들은 함수 바로 위 코멘트들을 적어주면 됩니다.
+   코멘트만 잘 작성해줘도 타입스크립트가 읽어들이고 보호를 해줍니다.
+
+```javascript
+// @ts-check
+
+/**
+ * Initializes the project
+ *
+ * @param {object} config
+ * @param {boolean} config.debug
+ * @param {string} config.url
+ * @returns {boolean}
+ */
+export function init(config) {
+  return true;
+}
+
+/**
+ * exit function
+ * @param {number} code
+ * @returns {number}
+ */
+export function exit(code) {
+  return code + 1;
+}
+```

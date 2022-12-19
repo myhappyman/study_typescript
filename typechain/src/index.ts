@@ -1,7 +1,8 @@
-import { exit, init } from "myPackage";
+import { exit, init } from "./myPackage";
 
 init({
-  url: "www.naver.com",
+  debug: false,
+  url: "12",
 });
 
 exit(1);
