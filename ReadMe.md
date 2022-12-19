@@ -210,3 +210,34 @@ url: https://myhappyman.tistory.com/284
 물론 construct는 존재하지 않기때문에, 사용되는 클래스 내부 변수들과 필수적으로 작성될 함수들을 정의할 수 있고 abstract이 해야할일을 대신 할수 있다.
 
 정의된 interface를 상속받을때는 extends가 아닌 implements키워드를 사용하며, abstract과의 차이점으로는 inteface는 javascript에는 없기 때문에, 빌드 후의 소스가 좀 더 가벼워지는 효과를 얻을 수 있어서 implements를 받는 자체의 interface를 자바스크립트에선 추적할수 없게된다.
+
+다만, interface를 상속받으면 상속받는 class에서는 접근제한자가 public으로만 사용 가능하다.
+
+```Typescript
+interface User {
+    firstName: string,
+    lastName: string,
+    sayHi(name: string): string,
+    fullName(): string,
+}
+
+interface Human{
+    health: number
+}
+
+class Player implements User,Human {
+    constructor(
+        public firstName: string,
+        public lastName: string,
+        public health: number
+    ) { };
+
+    fullName() {
+        return `${this.firstName} ${this.lastName}`;
+    }
+
+    sayHi(name: string) {
+        return `hello ${name} my name is ${this.fullName()}`;
+    }
+}
+```
