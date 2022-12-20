@@ -126,3 +126,57 @@ export function exit(code) {
   return code + 1;
 }
 ```
+
+# BlockChain Project Start!
+
+- 현 프로젝트의 구조상 구동시 불편함이 많아서 약간의 수정을 진행한다.
+
+1. package.json script부분에 start항목을 추가하고 build디렉토리의 index.js를 바로 실행해주도록 명령어를 추가한다.
+
+```json
+"scripts": {
+  "build": "tsc",
+  "start": "node build/index.js"
+}
+```
+
+앞으로 아래 명령어를 입력하면 바로 빌드가 되고 빌드된 index.js를 실행해준다.
+`npm run build && npm run start`
+
+2. ts-node
+   위에서 설정으로 편해졌지만 그다지 효율적이지 않으므로 앞으로 우리에게 개발을 도와줄 모듈을 설치한다.
+   `npm i -D ts-node`
+
+해당 모듈을 설치하면 빌드없이 타입스크립트를 실행시켜준다.
+
+배포용은 아니며 개발용으로 빠르게 빌드없이 새로고침할 때 사용하면 좋다.
+설치가 완료되면 package.json에 설정을 추가한다.
+
+```json
+"scripts": {
+  "build": "tsc",
+  "dev": "ts-node src/index",
+  "start": "node build/index.js"
+},
+```
+
+2-1. nodemon
+nodemon을 설치하면 알아서 커맨드를 재실행해준다.
+`npm i nodemon`
+
+일일히 커맨드를 실행할 필요가 없어서 서버를 재시작할일이 없다.
+마찬가지로 dev에 옵션을 다시 재추가해준다.
+
+```json
+"scripts": {
+  "build": "tsc",
+  "dev": "nodemon --exec ts-node src/index.ts",
+  "start": "node build/index.js"
+},
+```
+
+3. 구동 테스트하기
+   `npm run dev`
+   여기까지 세팅이 완료되면 개발모드로 프로젝트를 구동해서 테스트 해본다.
+
+정상적으로 index.ts파일이 실행되고 수정도 해보고 잘 동작되는지 확인해본다.
